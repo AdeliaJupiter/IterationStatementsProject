@@ -151,15 +151,18 @@ namespace IterationStatements
             Console.WriteLine($"Enter two numbers");
             int x = int.Parse(Console.ReadLine());
             int y = int.Parse(Console.ReadLine());
-            bool isEqual = IsEqual(x, y);
-            if(isEqual == true) 
-            { 
-                Console.WriteLine("Equal!"); 
-            }
-            else
-            {
-                Console.WriteLine("Not equal :(");
-            }
+            IsEqual(x, y);
+
+            Console.WriteLine($"Enter another integer");
+            int z = int.Parse(Console.ReadLine());
+            EvenOdd(z);
+
+            CanVote();
+
+            InRangeTen();
+
+            MultTableTwelve();
+
         }
 
         //METHODS
@@ -191,36 +194,121 @@ namespace IterationStatements
         }
 
         //Write a method to accept two integers as parameterss and check whether they are equal or not
-        public static bool IsEqual(int  x, int y)
+        public static void IsEqual(int  x, int y)
         {
-            bool isEqual;
-
             if (x == y)
             {
-                isEqual = true;
+                Console.WriteLine($"Equal!");
             }
             else
             {
-                isEqual = false;
+                Console.WriteLine($"Not equal :(");
             }
 
-            return isEqual;
+            Console.WriteLine();
         }
 
         //Write a method to check whether a given number is even or odd
+        public static void EvenOdd (int x)
+        {
+
+            if(x % 2 == 0)
+            {
+                Console.WriteLine($"{x} is even");
+            }
+            else
+            {
+                Console.WriteLine($"{x} is odd");
+
+            }
+
+            Console.WriteLine();
+        }
 
         //Write a method to check whether a given number is positive or negative
+        public static void PosNeg (int x)
+        {
+            if(x > 0)
+            {
+                Console.WriteLine($"{x} is positive");
+            }
+            else if (x < 0)
+            {
+                Console.WriteLine($"{x} is negative");
+            }
+            else
+            {
+                Console.WriteLine($"{x} is 0");
+            }
+
+            Console.WriteLine();
+        }
 
         //Write a method to read the age of a candidate and determine whether they can vote.
         //Hint: Use Parse or the safer TryParse() for an extra challenge
         //Parse()
         //TryParse()
+        public static void CanVote()
+        {
+            int age = 0;
+            bool isParsable;
+
+            do
+            {
+                Console.WriteLine($"How old are you?");
+                var response = Console.ReadLine();
+
+                isParsable = int.TryParse(response, out age);
+
+                if (isParsable && age >= 18)
+                {
+                    Console.WriteLine($"You can vote!");
+                }
+                else if (isParsable && age < 18)
+                {
+                    Console.WriteLine($"You can't vote yet.");
+                }
+                else
+                {
+                    Console.WriteLine($"Please enter a number");
+                }
+            } while (!isParsable);
+            Console.WriteLine();
+        }
 
         //Heatin Up Section:
         //Write a method to check if an integer(from the user) is in the range -10 to 10
+        public static void InRangeTen()
+        {
+            Console.WriteLine($"Enter an integer: ");
+            int x = int.Parse(Console.ReadLine());
+            if (x <= 10 && x >= -10)
+            { 
+                Console.WriteLine($"{x} is in range of -10 to 10");
+            }
+            else
+            {
+                Console.WriteLine($"{x} is out of range");
+            }
+
+            Console.WriteLine();
+        }
 
         //Write a method to display the multiplication table(from 1 to 12) of a given integer
+        public static void MultTableTwelve()
+        {
+            Console.WriteLine($"Enter an integer: ");
+            int x = int.Parse(Console.ReadLine());
+            int xMultiple;
 
+            for(int i = 1; i <= 12; i++)
+            {
+                xMultiple = x * i;
+                Console.WriteLine($"{x} * {i} = {xMultiple}");
+            }
+
+            Console.WriteLine();
+        }
 
         //Call the methods to test them in the Main method below
     }
